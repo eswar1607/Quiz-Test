@@ -8,7 +8,6 @@ local_settings.py
 /static
 fixtures.json
 /static
-/staticfiles/media
 /media
 sa.json
 
