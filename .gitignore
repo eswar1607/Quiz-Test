@@ -1,0 +1,14 @@
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+.DS_Store
+.coverage
+local_settings.py
+/static
+fixtures.json
+/static
+/staticfiles/media
+/media
+sa.json
+

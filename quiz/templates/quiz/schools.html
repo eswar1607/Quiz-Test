@@ -1,0 +1,6 @@
+{% if schools %}
+        <ol style="padding:5px;">{% for school in schools %}
+        <li ><a href="{% url 'student_list' school.id %}">{{school.name}}</li>
+        {% endfor %}
+        </ol>
+{% endif %}

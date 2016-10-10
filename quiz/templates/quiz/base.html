@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <script type = "text/javascript"
+        src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="contianer-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Wel Come</a>
+            {% if user.is_superuser%}
+            <a href="{% url 'quizzes' %}" class="navbar-brand">Schools</a>
+
+            {% else %}
+            <a href="{% url 'quizzes' %}" class="navbar-brand">Quizzes</a>
+            {% endif %}
+        </div>
+        <div class="collapse navbar-collapse ">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user}}</a></li>
+                <li><a href="{% url 'account_logout' %}" style="padding-right:1cm;"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+  {% block content %}
+  {% endblock %}
+  </body>
+  </html>

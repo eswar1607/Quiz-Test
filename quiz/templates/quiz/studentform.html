@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>using forms</title>
+     <script type = "text/javascript"
+         src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+    <h1>FORM PAGE</h1>
+
+    <p align="right">Welcome <b>{{ user }}</b></p>
+    <p align="right"><a href="{% url 'account_logout' %}" >logout</a></p>
+
+    <form method="post">{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit" />
+    </form>
+
+</body>
+</html>
