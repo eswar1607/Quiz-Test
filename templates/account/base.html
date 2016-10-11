@@ -12,12 +12,14 @@
 
         {% if messages %}
         <div>
+        {% comment %}
             <!-- <strong>Messages:</strong>
             <ul>
                 {% for message in messages %}
                 <li>{{message}}</li>
                 {% endfor %}
             </ul> -->
+            {% endcomment %}
         </div>
         {% endif %}
         {% block content %}

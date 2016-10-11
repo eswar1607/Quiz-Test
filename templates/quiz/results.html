@@ -1,0 +1,39 @@
+{% extends "quiz/base.html" %}
+
+{% block meta_title %}Login{% endblock %}
+
+{% block content %}
+    <h1>Results</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answered</th>
+            <th>Result</th>
+        </tr>
+        </thead>
+        {% for answered in attempted_obj%}
+        <tbody>
+        <tr>
+            <td>{{ answered.question }}</td>
+            {% if answered.answer_choice.choice %}
+                <td>{{answered.answer_choice.choice}} </td>
+            {% else %}
+                <td>{{answered.description}} </td>
+            {% endif %}
+            <td>{{answered.get_result_display}}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <p><b>Attempted</b> : {{ attempted_count }}</p>
+    <p><b>Corrected</b> : {{ correct_count }}</p>
+    <p><b>Score</b> : {{ relation_obj.score }}</p>
+    {% comment %}
+    <ol>{% for answered in attempted_obj%}
+    <li>{{ answered.question }} {{answered.answer_choice.choice}} {{answered.get_result_display}}</li>
+    {% endfor %}</ol>
+    {% endcomment %}
+{% endblock %}
+<!-- </body>
+</html> -->

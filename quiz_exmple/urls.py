@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from quiz import views
 from quiz.views import *
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     url(r'^quiz/', include('quiz.urls')),
     url(r'^accounts/profile/$',
      StudentLoginView.as_view(), name='account_profile'),
+    url(r'^$', TemplateView.as_view(template_name="quiz/home.html"), name="home"),
 
 ]

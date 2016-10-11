@@ -1,46 +1,8 @@
 {% extends "quiz/base.html" %}
 
 {% block meta_title %}Login{% endblock %}
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <script type = "text/javascript"
-        src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 
-</head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="contianer-fluid">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">Wel Come</a>
-        </div>
-        <div class="collapse navbar-collapse ">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user}}</a></li>
-                <li><a href="{% url 'account_logout' %}" style="padding-right:1cm;"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> -->
-                <!-- <li><a href="#" style="padding-right:1cm;" id="clock"></a></li>
-
-            </ul>
-        </div>
-    </div>
-</nav> -->
-<!-- <nav class="navbar navbar- navbar-fixed-top">
-    <div class="contianer-fluid">
-        <div>
-            <h1>Wel Come {{ user }} for {{ quiz_test }}</h1>
-            <p align="right" style="padding:5px"><a href="{% url 'account_logout' %}" >logout</a></p>
-            <p align="right" style="padding:5px" id="clock"></p>
-        </div>
-    </div>
-</nav> -->
 {% block content %}
-<div class="container" style="padding-top:50px;">
     {% if started and not quiz_relation.completed %}
         <div style="position: fixed;
     right:1%;" id="time"><a></a></div>
@@ -98,66 +60,8 @@
         <h1>Not yet started</h1>
     {% endif %}
 
-    <!-- {% comment %}
-    {% if quiz_relation.completed %}
-        <div class="ended">
-            <div style="text-align:center">
-                <h2 >Thank you for participation.Plese Logout </h2>
-                <p>Number of Questions: {{ result.total_questions }}</p>
-                <p>Number of Attempted: {{ result.questions_attempted }}</p>
-                {% if quiz_relation.result_published %}
-                    <h3><a href="{% url 'results'  quiz_test.id user.student.id %}"> Results</h3>
-                {% endif %}
-            </div>
-        </div>
-    {% else %}
 
-    <div class="questions">
-    {% if quizquestions %}
-    <form>
-    <ul>
-        {% for question in quizquestions %}
-        <div id="question_type" data-type="{{question.question_type}}">
-
-        <li >{{ question.question }}</li>
-                {% if question.question_type == 1 %}
-                <ul>{% for choice in question.choice_set.all %}
-                    <li><input type="radio" id="{{choice.pk}}" name="{{choice.id}}" data-question="{{question.pk}}" data-quiz='{{ quiz_test.pk}}' data-name="choice"/>
-                    {{ choice.choice }}</li>
-                    {% endfor %}
-                </ul><hr>
-                {% else %}
-                    <textarea  id="textarea" rows="10" cols="50"
-                    data-question='{{ question.pk }}' data-quiz='{{ quiz_test.pk }}'></textarea>
-                <hr>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </ul>
-    </form>
-    <button id="submit" type="submit">Submit</button>
-    {% else %}
-        <p>There is no Questions</p>
-    {% endif %}
-    {% endif %}
-    {% endcomment %} -->
-    <!-- <div class="pagination">
-        <span class="step-links">
-            {% if quizquestions.has_previous %}
-                <a href="?page={{ quizquestions.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ quizquestions.number }} of {{ quizquestions.paginator.num_pages }}.
-            </span>
-
-            {% if quizquestions.has_next %}
-                <a href="?page={{ quizquestions.next_page_number }}">next</a>
-            {% endif %}
-        </span>
-    </div> -->
     </div>
-</div>
 
 </body>
 <script type="text/javascript">

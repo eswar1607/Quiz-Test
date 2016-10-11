@@ -160,7 +160,9 @@ def Quiz(request):
         quiz = ''
     else:
         student = Student.objects.get(user=request.user)
-        quiz = StudentQuizRelation.objects.filter(student=student)
+        quiz = StudentQuizRelation.objects.filter(
+            student=student).order_by('-id')
+
     city = City.objects.all()
     schools = {}
     if request.is_ajax():
@@ -177,12 +179,14 @@ def Quiz(request):
         {'quiz': quiz, 'city': city, 'user': request.user})
 
 
+@login_required(login_url='/accounts/login/')
 def StudentList(request, s_id):
     school_obj = get_object_or_404(School, pk=s_id)
     students = school_obj.student_set.all()
     return render(request, 'quiz/student_list.html', {'students': students})
 
 
+@login_required(login_url='/accounts/login/')
 def SearchSchool(request):
     city = City.objects.all()
     schools = {}
@@ -199,12 +203,15 @@ def SearchSchool(request):
         request, 'quiz/searchschool.html', {'city': city})
 
 
+@login_required(login_url='/accounts/login/')
 def QuizList(request, s_id):
     student_obj = get_object_or_404(Student, pk=s_id)
-    quizzes = student_obj.studentquizrelation_set.filter(completed=True)
+    quizzes = student_obj.studentquizrelation_set.filter(
+        completed=True).order_by('-id')
     return render(request, 'quiz/student_quizzes.html', {'quizzes': quizzes})
 
 
+@login_required(login_url='/accounts/login/')
 def Results(request, quiz_id, s_id):
     student_obj = get_object_or_404(Student, pk=s_id)
     quiz_test_obj = get_object_or_404(QuizTest, pk=quiz_id)
@@ -223,7 +230,8 @@ def Results(request, quiz_id, s_id):
                 student_answer_obj.save()
             except:
                 pass
-    s = answer_obj.filter(result=1).count()
+    s = answer_obj.filter(
+        Q(quiztest=quiz_test_obj) & Q(result=1)).count()
     relation_obj = quiz_test_obj.studentquizrelation_set.get(
         student=student_obj)
     relation_obj.score = s

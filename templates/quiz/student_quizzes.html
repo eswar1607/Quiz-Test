@@ -1,0 +1,14 @@
+{% extends "quiz/base.html" %}
+
+{% block meta_title %}Student Quizzes{% endblock %}
+
+{% block content %}
+<h1>Quizzes</h1>
+    {% if quizzes %}
+        <ol>{% for quiz in quizzes %}
+        <li><a href="{% url 'results' quiz.quiztest.id quiz.student.id %}">{{quiz.quiztest.title}}</a></li>
+        {% endfor %}</ol>
+    {% else %}
+        <h2>No Quizzes are Attempted </h2>
+    {% endif %}
+{% endblock %}
