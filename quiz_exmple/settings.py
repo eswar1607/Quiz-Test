@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'quiz',
 
     # 3rd party apps
-    'whitenoise.runserver._nostatic',
+    'whitenoise.runserver_nostatic',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -158,4 +158,5 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
