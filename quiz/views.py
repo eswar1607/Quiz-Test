@@ -23,10 +23,11 @@ def index(request, q_id):
     now = timezone.now()
     started = False
     ended = False
-    if now > quiz_test.start_date and now < quiz_test.end_date:
-        started = True
-    elif now > quiz_test.end_date:
-        ended = True
+    if quiz_test.start_date and quiz_test.end_date:
+        if now > quiz_test.start_date and now < quiz_test.end_date:
+            started = True
+        elif now > quiz_test.end_date:
+            ended = True
     quizquestions = quiz_test.questions.all()
     user = Student.objects.get(user=request.user)
     StudentQuizRelation.objects.get_or_create(student=user, quiztest=quiz_test)

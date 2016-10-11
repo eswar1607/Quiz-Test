@@ -41,7 +41,7 @@
 
     {% elif ended or quiz_relation.completed %}
         {% if quiz_relation.completed %}
-            <div class="ended">
+            <div class="container ended">
                 <div style="text-align:center">
                     <h2 >Thank you for participation.Plese Logout </h2>
                     <p>Number of Questions: {{ result.total_questions }}</p>
@@ -52,14 +52,20 @@
                 </div>
             </div>
         {% else %}
-        <h1>Exam ended, Better luck next time</h1>
+        <div class="container" style="text-align:center">
+            <h1>Exam ended, Better luck next time</h1>
+        </div>
         {% endif %}
 
-    {% else  %}
+    {% elif not started and not ended  %}
+    <div class="container" style="text-align:center">
+        <h1>Quiz Not Scheduled</h1>
+    </div>
+    {% else %}
+    <div class="container" style="text-align:center">
         <h1>Not yet started</h1>
+    </div>
     {% endif %}
-
-
 </div>
 
 </body>

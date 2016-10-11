@@ -44,8 +44,8 @@ class QuizTest(models.Model):
 
     title = models.CharField(max_length=200)
     questions = models.ManyToManyField(QuizQuestion)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
 
     def __unicode__(self):
         return u"%s" % self.title
