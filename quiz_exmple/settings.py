@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'quiz',
 
     # 3rd party apps
+    'whitenoise.runserver._nostatic'
     'django.contrib.sites',
     'allauth',
     'allauth.account',
