@@ -130,12 +130,18 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS = (
     (os.path.join(BASE_DIR, "staticfiles"),)
