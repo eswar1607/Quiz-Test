@@ -161,7 +161,7 @@ def Quiz(request):
     else:
         student = Student.objects.get(user=request.user)
         quiz = StudentQuizRelation.objects.filter(
-            student=student).order_by('-id')
+            student=student).order_by('id')
 
     city = City.objects.all()
     schools = {}
