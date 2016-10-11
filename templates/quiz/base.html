@@ -31,6 +31,7 @@
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user}}</a></li>
                 <li><a href="{% url 'account_logout' %}" style="padding-right:1cm;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             {% else %}
+                <li><a href="{% url 'account_signup' %}" style="padding-right:1cm;"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
                 <li><a href="{% url 'account_login' %}" style="padding-right:1cm;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             {% endif %}
 

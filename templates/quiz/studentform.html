@@ -1,10 +1,6 @@
 {% extends "quiz/base.html" %}
 {% block content %}
-    <h1>FORM PAGE</h1>
-
-    <p align="right">Welcome <b>{{ user }}</b></p>
-    <p align="right"><a href="{% url 'account_logout' %}" >logout</a></p>
-
+<h2>Enter your details</h2>
     <form method="post">{% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Submit" />
