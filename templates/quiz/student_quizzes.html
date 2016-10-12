@@ -9,6 +9,6 @@
         <li><a href="{% url 'results' quiz.quiztest.id quiz.student.id %}">{{quiz.quiztest.title}}</a></li>
         {% endfor %}</ol>
     {% else %}
-        <h2>No Quizzes are Attempted </h2>
+        <h2 style="text-align:center;">No Quizzes are Attempted </h2>
     {% endif %}
 {% endblock %}

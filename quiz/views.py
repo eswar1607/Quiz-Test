@@ -15,7 +15,6 @@ from django.utils import timezone
 
 # Create your views here.
 
-
 @login_required(login_url='/accounts/login/')
 def index(request, q_id):
     quiz_test = get_object_or_404(QuizTest, pk=q_id)
@@ -23,7 +22,9 @@ def index(request, q_id):
     now = timezone.now()
     started = False
     ended = False
+    schedule = False
     if quiz_test.start_date and quiz_test.end_date:
+        schedule = True
         if now > quiz_test.start_date and now < quiz_test.end_date:
             started = True
         elif now > quiz_test.end_date:
@@ -105,7 +106,8 @@ def index(request, q_id):
          'result': result,
          'now': now,
          'started': started,
-         'ended': ended
+         'ended': ended,
+         'schedule': schedule
 
          }
     )

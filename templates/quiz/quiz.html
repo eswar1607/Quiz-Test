@@ -1,9 +1,7 @@
 {% extends "quiz/base.html" %}
 
-{% block meta_title %}Login{% endblock %}
 
 {% block content %}
-    <div class="container" style="padding-top:50px;">
         {% if user.is_superuser %}
         <div class="row">
             <div class="col-sm-6 col-lg-offset-2">
@@ -33,7 +31,8 @@
         {% endif %}
         </div>
         </div>
-    </div>
+{% endblock %}
+{% block js %}
 <script type="text/javascript">
     $(document).ready(function(){
         $("#city").change(function(){
@@ -64,7 +63,5 @@
 
     });
 </script>
-{% endblock %}
 
-<!-- </body>
-</html> -->
+{% endblock %}

@@ -1,15 +1,10 @@
 {% extends "quiz/base.html" %}
-
-{% block meta_title %}Students{% endblock %}
-
 {% block content %}
  <h1>Students List</h1>
- <div>
      {% if students %}
         <ol>{% for student in students %}
             <li><a href="{% url 'quiz_list' student.id %}">{{ student.user }}</li></a>
         {% endfor %}
         </ol>
      {% endif %}
- </div>
- {% endblock %}
+{% endblock %}

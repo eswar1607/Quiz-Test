@@ -2,6 +2,8 @@
 
 
 {% block content %}
+
+{% if schedule %}
     {% if started and not quiz_relation.completed %}
         <div style="position: fixed;
     right:1%;" id="time"><a></a></div>
@@ -32,16 +34,13 @@
         <button id="submit" type="submit">Submit</button>
         </div>
 
-
         {% else %}
-<div class="container" style="padding-top:50px;text-align: center;">
-
             <p>There is no Questions</p>
         {% endif %}
 
     {% elif ended or quiz_relation.completed %}
         {% if quiz_relation.completed %}
-            <div class="container ended">
+            <div class="ended">
                 <div style="text-align:center">
                     <h2 >Thank you for participation.Plese Logout </h2>
                     <p>Number of Questions: {{ result.total_questions }}</p>
@@ -52,23 +51,21 @@
                 </div>
             </div>
         {% else %}
-        <div class="container" style="text-align:center">
-            <h1>Exam ended, Better luck next time</h1>
-        </div>
+        <h1 style="text-align:center;">Exam ended, Better luck next time</h1>
         {% endif %}
 
-    {% elif not started and not ended  %}
-    <div class="container" style="text-align:center">
-        <h1>Quiz Not Scheduled</h1>
-    </div>
     {% else %}
-    <div class="container" style="text-align:center">
-        <h1>Not yet started</h1>
-    </div>
-    {% endif %}
-</div>
+        <h1 style="text-align:center;">Not yet started</h1>
 
-</body>
+    {% endif %}
+{% else %}
+    <h1 style="text-align:center;">Not Scheduled</h1>
+{% endif %}
+{% endblock %}
+
+
+
+{% block js %}
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -221,4 +218,3 @@
 
 </script>
 {% endblock %}
-<!-- </html> -->
