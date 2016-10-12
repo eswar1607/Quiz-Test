@@ -3,6 +3,7 @@
 {% block meta_title %}Login{% endblock %}
 
 {% block content %}
+{% if answered %}
     <h1>Results</h1>
     <table class="table">
         <thead>
@@ -29,9 +30,7 @@
     <p><b>Attempted</b> : {{ attempted_count }}</p>
     <p><b>Corrected</b> : {{ correct_count }}</p>
     <p><b>Score</b> : {{ relation_obj.score }}</p>
-    {% comment %}
-    <ol>{% for answered in attempted_obj%}
-    <li>{{ answered.question }} {{answered.answer_choice.choice}} {{answered.get_result_display}}</li>
-    {% endfor %}</ol>
-    {% endcomment %}
+{% else %}
+    <h1 style="text-align:center;">Quiz Not Attemped</h1>
+{% endif %}
 {% endblock %}

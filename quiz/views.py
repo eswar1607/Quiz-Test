@@ -220,19 +220,23 @@ def Results(request, quiz_id, s_id):
     quiz_test_obj = get_object_or_404(QuizTest, pk=quiz_id)
 
     answer_obj = StudentAnswer.objects.filter(student=student_obj)
+    answered = False
     for question in quiz_test_obj.questions.all():
-        if question.question_type == 1:
-            student_answer_obj = quiz_test_obj.studentanswer_set.get(
-                Q(student=student_obj) &
-                Q(question=question))
-            try:
-                CorrectAnswer.objects.get(
-                    correct_choice=student_answer_obj.answer_choice)
 
-                student_answer_obj.result = 1
-                student_answer_obj.save()
-            except:
-                pass
+        if question.question_type == 1:
+            if quiz_test_obj.studentanswer_set.filter(student=student_obj):
+                answered = True
+                student_answer_obj = quiz_test_obj.studentanswer_set.get(
+                    Q(student=student_obj) &
+                    Q(question=question))
+                try:
+                    CorrectAnswer.objects.get(
+                        correct_choice=student_answer_obj.answer_choice)
+
+                    student_answer_obj.result = 1
+                    student_answer_obj.save()
+                except:
+                    pass
     s = answer_obj.filter(
         Q(quiztest=quiz_test_obj) & Q(result=1)).count()
     relation_obj = quiz_test_obj.studentquizrelation_set.get(
@@ -252,6 +256,7 @@ def Results(request, quiz_id, s_id):
                 'correct_count': correct_count,
                 'attempted_count': attempted_count,
                 'attempted_obj' : attempted_obj,
-                'relation_obj': relation_obj
+                'relation_obj': relation_obj,
+                'answered': answered
     }
     return render(request, 'quiz/results.html', context)
